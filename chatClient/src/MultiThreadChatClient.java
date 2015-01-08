@@ -8,35 +8,25 @@ import java.net.UnknownHostException;
 
 public class MultiThreadChatClient implements Runnable {
 
-  //client socket
   private static Socket clientSocket = null;
-  //output stream
   private static PrintStream os = null;
-  //input stream
   private static DataInputStream is = null;
-
   private static BufferedReader inputLine = null;
   private static boolean closed = false;
   
   public static void main(String[] args) {
 
-    //default port.
     int portNumber = 2222;
-    //default host.
     String host = "localhost";
 
     if (args.length < 2) {
-      System.out
-          .println("Usage: java MultiThreadChatClient <host> <portNumber>\n"
+      System.out.println("Usage: java MultiThreadChatClient <host> <portNumber>\n"
               + "Now using host=" + host + ", portNumber=" + portNumber);
     } else {
-      host = args[0];
-      portNumber = Integer.valueOf(args[1]).intValue();
+          host = args[0];
+          portNumber = Integer.valueOf(args[1]).intValue();
     }
 
-    /*
-     * Deschidem un socket cu host si port-ul oferit . Deschidem input si output streams.
-     */
     try {
       clientSocket = new Socket(host, portNumber);
       inputLine = new BufferedReader(new InputStreamReader(System.in));
